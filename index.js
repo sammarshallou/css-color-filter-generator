@@ -333,6 +333,12 @@ class Solver {
     color.brightness(filters[4] / 100);
     color.contrast(filters[5] / 100);
 
+
+    // sam experiment -  I don't like the original way it calculates loss. I think it should square the differences
+    // and I'm also pretty doubtful about considering both RGB and HSL differences...
+    return Math.pow((color.r - this.target.r), 2) + Math.pow((color.g - this.target.g), 2) + Math.pow((color.b - this.target.b), 2);
+    
+    /*
     const colorHSL = color.hsl();
     return (
       Math.abs(color.r - this.target.r) +
@@ -341,7 +347,7 @@ class Solver {
       Math.abs(colorHSL.h - this.targetHSL.h) +
       Math.abs(colorHSL.s - this.targetHSL.s) +
       Math.abs(colorHSL.l - this.targetHSL.l)
-    );
+    );*/
   }
 
   raw(filters) {
@@ -393,7 +399,7 @@ function compute() {
     iterations++;
     result = solver.solve();
     // Retry until we get a decent result.
-    if (result.loss < 0.01) {
+    if (result.loss < 1) {
       break;
     }
   }
