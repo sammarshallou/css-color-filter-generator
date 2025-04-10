@@ -392,14 +392,16 @@ function compute() {
   }
 
   const color = new Color(rgb[0], rgb[1], rgb[2]);
-  const solver = new Solver(color);
   let result = null;
+  let solver = null;
   let iterations = 0;
   while (iterations < 1000) {
     iterations++;
+    const possibleSolver = new Solver(color);
     const possibleResult = solver.solve();
     if (!result || possibleResult.loss < result.loss) {
       result = possibleResult;
+      solver = possibleSolver;
     }
   }
   const lossMsg = "Iterations: " + iterations;
