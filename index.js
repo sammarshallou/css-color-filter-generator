@@ -393,7 +393,7 @@ function compute() {
     iterations++;
     result = solver.solve();
     // Retry until we get a decent result.
-    if (result.loss < 0.05) {
+    if (result.loss < 0.02) {
       break;
     }
   }
