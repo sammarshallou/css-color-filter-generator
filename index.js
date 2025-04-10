@@ -387,7 +387,14 @@ function compute() {
 
   const color = new Color(rgb[0], rgb[1], rgb[2]);
   const solver = new Solver(color);
-  const result = solver.solve();
+  let result;
+  while (true) {
+    result = solver.solve();
+    // Retry until we get a decent result.
+    if (result.loss < 1) {
+      break;
+    }
+  }
   let lossMsg = "";
   const res = {
     color,
