@@ -396,7 +396,7 @@ function compute() {
   let result = null;
   let solver = null;
   let iterations = 0;
-  while (iterations < 1000) {
+  while (iterations < 10000) {
     iterations++;
     const possibleSolver = new Solver(color);
     const possibleResult = possibleSolver.solve();
