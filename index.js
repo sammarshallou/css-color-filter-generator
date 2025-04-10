@@ -336,7 +336,8 @@ class Solver {
 
     // sam experiment -  I don't like the original way it calculates loss. I think it should square the differences
     // and I'm also pretty doubtful about considering both RGB and HSL differences...
-    return Math.pow((color.r - this.target.r), 2) + Math.pow((color.g - this.target.g), 2) + Math.pow((color.b - this.target.b), 2);
+    return Math.sqrt(
+      Math.pow((color.r - this.target.r), 2) + Math.pow((color.g - this.target.g), 2) + Math.pow((color.b - this.target.b), 2));
     
     /*
     const colorHSL = color.hsl();
