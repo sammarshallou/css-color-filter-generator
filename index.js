@@ -388,13 +388,16 @@ function compute() {
   const color = new Color(rgb[0], rgb[1], rgb[2]);
   const solver = new Solver(color);
   let result;
-  while (true) {
+  let iterations = 0;
+  while (iterations < 1000) {
+    iterations++;
     result = solver.solve();
     // Retry until we get a decent result.
     if (result.loss < 0.1) {
       break;
     }
   }
+  console.log('Iterations: ' + iterations);
   let lossMsg = "";
   const res = {
     color,
