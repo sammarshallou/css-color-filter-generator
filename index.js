@@ -391,7 +391,7 @@ function compute() {
   while (true) {
     result = solver.solve();
     // Retry until we get a decent result.
-    if (result.loss < 1) {
+    if (result.loss < 0.1) {
       break;
     }
   }
@@ -437,7 +437,7 @@ function compute() {
     res.result.filter
   );
 
-  lossDetail.innerHTML = `Loss: ${res.result.loss.toFixed(1)}. <b>${
+  lossDetail.innerHTML = `Loss: ${res.result.loss.toFixed(2)}. <b>${
     res.lossMsg
   }</b>`;
 }
