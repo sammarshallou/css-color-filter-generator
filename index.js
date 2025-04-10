@@ -393,28 +393,17 @@ function compute() {
     iterations++;
     result = solver.solve();
     // Retry until we get a decent result.
-    if (result.loss < 0.1) {
+    if (result.loss < 0.05) {
       break;
     }
   }
-  console.log('Iterations: ' + iterations);
-  let lossMsg = "";
+  const lossMsg = "Iterations: " + iterations;
   const res = {
     color,
     solver,
     result,
     lossMsg,
   };
-
-  if (res.result.loss < 1) {
-    res.lossMsg = "This is a perfect result.";
-  } else if (res.result.loss < 5) {
-    res.lossMsg = "This is close enough.";
-  } else if (res.result.loss < 15) {
-    res.lossMsg = "The color is somewhat off. Consider running it again.";
-  } else {
-    res.lossMsg = "The color is extremely off. Run it again!";
-  }
 
   const filterPixel = document.getElementById("filterPixel");
   const filterPixelText = document.getElementById("filterPixelText");
@@ -440,7 +429,7 @@ function compute() {
     res.result.filter
   );
 
-  lossDetail.innerHTML = `Loss: ${res.result.loss.toFixed(2)}. <b>${
+  lossDetail.innerHTML = `Loss: ${res.result.loss.toFixed(3)}. <b>${
     res.lossMsg
   }</b>`;
 }
