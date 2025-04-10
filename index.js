@@ -398,7 +398,7 @@ function compute() {
   while (iterations < 1000) {
     iterations++;
     const possibleSolver = new Solver(color);
-    const possibleResult = solver.solve();
+    const possibleResult = possibleSolver.solve();
     console.log('Possible result loss: ' + possibleResult.loss);
     if (!result || possibleResult.loss < result.loss) {
       result = possibleResult;
